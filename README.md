@@ -119,3 +119,72 @@ class Solution:
                     right = mid - 1
 
         return -1
+
+
+
+
+
+
+
+
+
+
+
+
+111. Minimum Depth of Binary Tree
+Easy
+Topics
+premium lock icon
+Companies
+Given a binary tree, find its minimum depth.
+
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+
+Note: A leaf is a node with no children.
+
+ 
+
+Example 1:
+
+<img width="432" height="302" alt="image" src="https://github.com/user-attachments/assets/c41500f4-0902-427b-b15d-aa4ef617de89" />
+
+
+Input: root = [3,9,20,null,null,15,7]
+Output: 2
+Example 2:
+
+Input: root = [2,null,3,null,4,null,5,null,6]
+Output: 5
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 105].
+-1000 <= Node.val <= 1000
+
+Solution;
+
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def binary_tree_min_depth(root: Node) -> int:
+    # WRITE YOUR BRILLIANT CODE HERE
+    return 0
+
+# this function builds a tree from input; you don't have to modify it
+# learn more about how trees are encoded in https://algo.monster/problems/serializing_tree
+def build_tree(nodes, f):
+    val = next(nodes)
+    if val == "x":
+        return None
+    left = build_tree(nodes, f)
+    right = build_tree(nodes, f)
+    return Node(f(val), left, right)
+
+if __name__ == "__main__":
+    root = build_tree(iter(input().split()), int)
+    res = binary_tree_min_depth(root)
+    print(res)
