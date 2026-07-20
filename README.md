@@ -72,7 +72,7 @@ I can also give you a Java, C++, or debug-trace version for your GitHub LeetCode
 
 
 
-33. Search in Rotated Sorted Array
+# 33. Search in Rotated Sorted Array
 
 Problem Description
 You are given an integer array nums that was originally sorted in ascending order with all distinct values. However, this array may have been left rotated at some unknown pivot index k (where 1 <= k < nums.length).
@@ -92,7 +92,7 @@ The array contains distinct values (no duplicates)
 The array may or may not be rotated
 The challenge is to efficiently search in this rotated sorted array without first finding the rotation point or restoring the original order. Since the required time complexity is O(log n), a linear search is not acceptable - you need to use a modified binary search approach that can handle the rotation.
 
-SOLUTION :
+# SOLUTION :
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
@@ -131,7 +131,7 @@ class Solution:
 
 
 
-111. Minimum Depth of Binary Tree
+# 111. Minimum Depth of Binary Tree
 Easy
 Topics
 premium lock icon
@@ -162,7 +162,7 @@ Constraints:
 The number of nodes in the tree is in the range [0, 105].
 -1000 <= Node.val <= 1000
 
-Solution;
+# Solution;
 
 class Node:
     def __init__(self, val, left=None, right=None):
@@ -174,8 +174,6 @@ def binary_tree_min_depth(root: Node) -> int:
     # WRITE YOUR BRILLIANT CODE HERE
     return 0
 
-# this function builds a tree from input; you don't have to modify it
-# learn more about how trees are encoded in https://algo.monster/problems/serializing_tree
 def build_tree(nodes, f):
     val = next(nodes)
     if val == "x":
@@ -188,3 +186,45 @@ if __name__ == "__main__":
     root = build_tree(iter(input().split()), int)
     res = binary_tree_min_depth(root)
     print(res)
+
+
+
+# 96. Unique Binary Search Trees
+Medium
+Topics
+premium lock icon
+Companies
+Given an integer n, return the number of structurally unique BST's (binary search trees) which has exactly n nodes of unique values from 1 to n.
+
+ 
+
+Example 1:
+
+<img width="901" height="222" alt="image" src="https://github.com/user-attachments/assets/3b7b8e64-a9fc-439b-91e9-aed69431f906" />
+
+
+Input: n = 3
+Output: 5
+Example 2:
+
+Input: n = 1
+Output: 1
+ 
+
+Constraints:
+
+1 <= n <= 19
+
+
+# Solution:
+
+class Solution:
+  def numTrees(self, n: int) -> int:
+    # dp[i] := the number of unique BST's that store values 1..i
+    dp = [1, 1] + [0] * (n - 1)
+
+    for i in range(2, n + 1):
+      for j in range(i):
+        dp[i] += dp[j] * dp[i - j - 1]
+
+    return dp[n]
